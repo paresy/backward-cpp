@@ -193,6 +193,12 @@
 #include <syscall.h>
 #include <unistd.h>
 
+#ifdef __UCLIBC__
+  void psiginfo(const siginfo_t* pinfo, const char* s) {
+    //Stub for uclibc
+  }
+#endif
+
 #if BACKWARD_HAS_BFD == 1
 //              NOTE: defining PACKAGE{,_VERSION} is required before including
 //                    bfd.h on some platforms, see also:
