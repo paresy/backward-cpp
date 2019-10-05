@@ -3513,8 +3513,11 @@ public:
                                 sizeof posix_signals / sizeof posix_signals[0]);
   }
 
+  static std::string _save_path;
+
   SignalHandling(const std::vector<int> &posix_signals = make_default_signals())
       : _loaded(false) {
+
     bool success = true;
 
     const size_t stack_size = 1024 * 1024 * 8;
@@ -3590,7 +3593,18 @@ public:
 
     Printer printer;
     printer.address = true;
-    printer.print(st, stderr);
+
+    if(_save_path.empty())
+    {
+      printer.print(st, stderr);
+    }
+    else
+    {
+      std::string path = _save_path + "crash" + std::to_string(time(0)) + ".log";
+      std::ofstream ofs(path.c_str(), std::ios::out | std::ios::binary);
+      printer.print(st, ofs);
+      ofs.close();
+    }
 
 #if _XOPEN_SOURCE >= 700 || _POSIX_C_SOURCE >= 200809L
     psiginfo(info, nullptr);

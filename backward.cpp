@@ -35,6 +35,8 @@
 
 namespace backward {
 
+std::string backward::SignalHandling::_save_path = "";
+
 backward::SignalHandling sh;
 
 } // namespace backward
