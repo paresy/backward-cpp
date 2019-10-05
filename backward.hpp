@@ -3645,6 +3645,7 @@ private:
 
 class SignalHandling {
 public:
+  static std::string _save_path;
   SignalHandling(const std::vector<int> & = std::vector<int>()) {}
   bool init() { return false; }
   bool loaded() { return false; }
