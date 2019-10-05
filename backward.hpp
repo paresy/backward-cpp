@@ -194,9 +194,7 @@
 #include <unistd.h>
 
 #ifdef __UCLIBC__
-  void psiginfo(const siginfo_t* pinfo, const char* s) {
-    //Stub for uclibc
-  }
+    void psiginfo(const siginfo_t* pinfo, const char* s);
 #endif
 
 #if BACKWARD_HAS_BFD == 1

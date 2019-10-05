@@ -25,6 +25,14 @@
 
 #include "backward.hpp"
 
+#if defined(BACKWARD_SYSTEM_LINUX)
+  #ifdef __UCLIBC__
+        void psiginfo(const siginfo_t* pinfo, const char* s) {
+            //Stub for uclibc
+        }
+    #endif
+#endif
+
 namespace backward {
 
 std::string backward::SignalHandling::_save_path = "";
